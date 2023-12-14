@@ -16,11 +16,18 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
-    private int ID;
+    private long ID;
     private  String firstName;
     private  String lastName;
     private  int semester;
     private  int mattNum;
     private  String faculty;
+
+    @OneToOne
+    @JoinColumn(name = "book_name")
+    private Book book;
+
+
+
 
 }
