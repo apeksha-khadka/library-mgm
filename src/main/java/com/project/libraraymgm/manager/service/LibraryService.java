@@ -30,7 +30,7 @@ public class LibraryService implements ServiceInterface{
     
 
     @Override
-    public List<User> getAllUser(User user) {
+    public List<User> getAllUser() {
         return libraryRepository.findAll();
     }
 

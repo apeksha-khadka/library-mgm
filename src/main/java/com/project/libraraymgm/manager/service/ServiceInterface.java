@@ -11,7 +11,7 @@ public interface ServiceInterface {
      Optional<User> getUserById(long id);
 
 
-    List<User> getAllUser(User user);
+    List<User> getAllUser();
 
     User updateUser(long id, User user);
       void deleteUser(long id);
