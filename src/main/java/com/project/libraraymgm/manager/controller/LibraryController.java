@@ -1,7 +1,7 @@
 package com.project.libraraymgm.manager.controller;
 
-import com.project.libraraymgm.manager.entity.User;
-import com.project.libraraymgm.manager.service.LibraryService;
+import com.project.libraraymgm.manager.model.User;
+import com.project.libraraymgm.manager.service.UserServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +12,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/user")
 public class LibraryController {
-    private LibraryService libraryService;
+    private UserServiceImpl libraryService;
 
-    private LibraryController(LibraryService libraryService) {
+    private LibraryController(UserServiceImpl libraryService) {
         this.libraryService = libraryService;
     }
 

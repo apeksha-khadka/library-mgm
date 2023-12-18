@@ -1,4 +1,4 @@
-package com.project.libraraymgm.manager.entity;
+package com.project.libraraymgm.manager.model;
 
 import jakarta.persistence.*;
 import lombok.*;
