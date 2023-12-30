@@ -1,4 +1,4 @@
-package com.project.libraraymgm.manager.model;
+package com.project.libraraymgm.manager.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
