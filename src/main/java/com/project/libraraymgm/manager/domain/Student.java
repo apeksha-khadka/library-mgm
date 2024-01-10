@@ -20,12 +20,14 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    private int id;
     private String firstName;
     private String lastName;
-
     private int matriculationNumber;
     private String emailAddress;
+    private String password;
+
+    @Enumerated(EnumType.STRING)
     private Faculty faculty;
 
     private enum Faculty {

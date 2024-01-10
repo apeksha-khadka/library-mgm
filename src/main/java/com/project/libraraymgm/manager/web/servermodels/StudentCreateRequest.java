@@ -2,6 +2,8 @@ package com.project.libraraymgm.manager.web.servermodels;
 
 import lombok.Data;
 
+import java.util.Arrays;
+
 @Data
 public class StudentCreateRequest {
     String firstName;
@@ -27,11 +29,15 @@ public class StudentCreateRequest {
         if (this.getLastName().length() > 15) {
             return false;
         }
+        if((this.faculty != null) && Arrays.stream(Faculty.values()).anyMatch(facultyEnum -> facultyEnum.name().equals(faculty))){
+            return false;
+        }
+
         CharSequence charSequence = "@";
         if ((this.getEmailAddress() == null) || (!this.getEmailAddress().contains(charSequence))) {
             return false;
         }
-        return true;
+          return true;
     }
 
 }
