@@ -50,10 +50,13 @@ public class BookController {
     }
 
     @GetMapping("/search-books")
-    public List<Book> searchBooks(@RequestParam(required = false) String author) {
+    public List<Book> searchBooks(@RequestParam(required = false) String authorName, @RequestParam String bookName) {
         List<Book> matchingBooks = new ArrayList<>();
-        if (author != null) {
-            matchingBooks.addAll(bookService.searchBookByAuthor(author));
+        if (authorName != null) {
+            matchingBooks.addAll(bookService.searchBookByAuthor(authorName));
+        }
+        if (bookName != null) {
+            matchingBooks.addAll(bookService.searchBookByBookName(bookName));
         }
         return matchingBooks;
     }

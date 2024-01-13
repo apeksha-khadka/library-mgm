@@ -25,7 +25,7 @@ public class BookService {
     }
 
     public void deleteBookById(int id) {
-        if (!bookRepository.existsById(id)) {
+        if (bookRepository.existsById(id)) {
             bookRepository.deleteById(id);
         } else {
             throw new StudentNotFoundException(id);
@@ -44,7 +44,11 @@ public class BookService {
         }
     }
 
-    public List<Book> searchBookByAuthor(String author) {
-        return bookRepository.findBookByAuthorName(author);
+    public List<Book> searchBookByAuthor(String authorName) {
+        return bookRepository.findBookByAuthorName(authorName);
+    }
+
+    public List<Book> searchBookByBookName(String bookName) {
+        return bookRepository.findBooksByBookName(bookName);
     }
 }
