@@ -1,5 +1,6 @@
 package com.project.libraraymgm.manager.web.servermodels;
 
+import com.project.libraraymgm.manager.exception.InvalidRequestBodyException;
 import lombok.Data;
 
 import java.util.Arrays;
@@ -18,26 +19,24 @@ public class StudentCreateRequest {
         PE,
     }
 
-    public  boolean validRequestBody() {
+    public void validateRequestBody() {
         if (this.getMatriculationNumber() > 99999) {
-
-            return false;
+            throw new InvalidRequestBodyException();
         }
         if (this.getFirstName().length() > 15) {
-            return false;
+            throw new InvalidRequestBodyException();
         }
         if (this.getLastName().length() > 15) {
-            return false;
+            throw new InvalidRequestBodyException();
         }
         if((this.faculty != null) && Arrays.stream(Faculty.values()).anyMatch(facultyEnum -> facultyEnum.name().equals(faculty))){
-            return false;
+            throw new InvalidRequestBodyException();
         }
 
         CharSequence charSequence = "@";
         if ((this.getEmailAddress() == null) || (!this.getEmailAddress().contains(charSequence))) {
-            return false;
+            throw new InvalidRequestBodyException();
         }
-          return true;
     }
 
 }

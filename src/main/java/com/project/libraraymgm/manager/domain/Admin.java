@@ -18,8 +18,5 @@ public class Admin {
     private String adminName;
     private String emailAddress;
     private String password;
-
-
-
 }
 

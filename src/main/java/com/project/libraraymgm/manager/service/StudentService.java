@@ -1,8 +1,11 @@
 package com.project.libraraymgm.manager.service;
 
 import com.project.libraraymgm.manager.domain.Student;
+import com.project.libraraymgm.manager.exception.DatabaseException;
+import com.project.libraraymgm.manager.exception.ResourceAlreadyExistsException;
 import com.project.libraraymgm.manager.exception.StudentNotFoundException;
 import com.project.libraraymgm.manager.infrastructure.StudentRepository;
+import org.hibernate.dialect.Database;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -16,30 +19,24 @@ public class StudentService {
     }
 
     public Student saveStudent(Student student) {
-        try {
-            Student savedStudent = studentRepository.save(student);
-            return savedStudent;
-        } catch (Exception ex) {
-
-            throw ex;
+        Student existingStudent = studentRepository.findByEmailAddress(student.getEmailAddress());
+        if (existingStudent != null) {
+            throw new ResourceAlreadyExistsException(Student.class.getSimpleName());
         }
-
+        return studentRepository.save(student);
     }
 
     public Student getStudentById(int id) {
-        try{
+        try {
             return studentRepository.findById(id).orElseThrow();
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             throw new StudentNotFoundException(id);
-
-
         }
     }
 
     public Student updatedInfo(int id, Student student) {
         Student updatedStudent = studentRepository.findById(id).orElseThrow();
-        if(updatedStudent!= null) {
+        if (updatedStudent != null) {
             updatedStudent.setFirstName(student.getFirstName());
             updatedStudent.setLastName(student.getLastName());
             updatedStudent.setEmailAddress(student.getEmailAddress());
@@ -47,8 +44,7 @@ public class StudentService {
             updatedStudent.setFaculty(student.getFaculty());
             return studentRepository.save(updatedStudent);
 
-        }
-        else{
+        } else {
             return null;
         }
 

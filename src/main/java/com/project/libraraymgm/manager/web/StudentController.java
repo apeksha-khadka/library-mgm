@@ -1,7 +1,6 @@
 package com.project.libraraymgm.manager.web;
 
 import com.project.libraraymgm.manager.domain.Student;
-import com.project.libraraymgm.manager.exception.InvalidRequestBodyException;
 import com.project.libraraymgm.manager.service.StudentService;
 import com.project.libraraymgm.manager.web.servermodels.StudentCreateRequest;
 import com.project.libraraymgm.manager.web.servermodels.StudentResponse;
@@ -18,28 +17,18 @@ import org.springframework.web.bind.annotation.*;
 public class StudentController {
     private StudentService studentService;
 
-
     private StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
-    @PostMapping()
+    @PostMapping("/create")
     public ResponseEntity<Student> createStudent(@RequestBody StudentCreateRequest studentReq) {
 
-        if (!studentReq.validRequestBody()) {
-            throw new InvalidRequestBodyException();
-////            ErrorBody errorBody = new ErrorBody(
-////                    "invalid request body"
-////            );
-//            return ResponseEntity.badRequest().body(errorBody);
-        }
+        studentReq.validateRequestBody();
 
         Student responseStudent = studentService.saveStudent(mapStudentCreateRequestToDomain(studentReq));
 
-
-        //       Student student = studentService.saveUser(studentReq);
-//        return studentService.saveUser(studentReq);
-        return new ResponseEntity<Student>(responseStudent, HttpStatusCode.valueOf(200));
+        return new ResponseEntity<>(responseStudent, HttpStatusCode.valueOf(200));
     }
 
     @GetMapping("/{id}")
