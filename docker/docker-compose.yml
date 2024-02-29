@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+  db-library:
+    image: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: db_library
+      MYSQL_USER: db_library
+      MYSQL_PASSWORD: db_library
+      MYSQL_ROOT_PASSWORD: db_library
