@@ -26,18 +26,19 @@ public class AdminController {
         this.bookController = bookController;
     }
 
+
     @PostMapping()
     public Admin createAdmin(@RequestBody Admin admin) {
         return adminService.saveAdmin(admin);
     }
 
-    //checked
+
     @PostMapping("/add-book")
     public Book addBook(@RequestBody Book book) {
         return bookService.addBook(book);
     }
 
-    //checked
+
     @PutMapping("/update-book/{id}")
     public Book updateBook(@PathVariable int id, @RequestBody Book book) {
         return bookService.updateBook(id, book);
@@ -48,11 +49,12 @@ public class AdminController {
         bookService.deleteBookById(id);
     }
 
-    //checked
+
     @GetMapping("/search-book")
     public List<Book> searchBook(@RequestParam String author) {
         return bookService.searchBookByAuthor(author);
 
     }
+
 
 }

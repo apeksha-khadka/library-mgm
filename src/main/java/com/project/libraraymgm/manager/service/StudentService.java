@@ -1,12 +1,9 @@
 package com.project.libraraymgm.manager.service;
 
 import com.project.libraraymgm.manager.domain.Student;
-import com.project.libraraymgm.manager.exception.DatabaseException;
 import com.project.libraraymgm.manager.exception.ResourceAlreadyExistsException;
 import com.project.libraraymgm.manager.exception.StudentNotFoundException;
 import com.project.libraraymgm.manager.infrastructure.StudentRepository;
-import org.hibernate.dialect.Database;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
